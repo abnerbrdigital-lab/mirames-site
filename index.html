@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grupo Mirames</title>
+<meta name="description" content="Grupo Mirames, Rosana/SP: transportes, aplicativos móveis, licitações, e-commerce e saúde e bem-estar.">
+<!-- Se for verificar o site no Google Search Console pelo método "Tag HTML", cole a tag google-site-verification aqui. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F9EFED'/%3E%3Cpath d='M2 27 12 7l10 20z' fill='%23A9775F'/%3E%3Cpath d='M18 27l6-12 6 12z' fill='%23DABAA3'/%3E%3Cpath d='M9 27 17 9l8 18z' fill='%23794722'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Cores tiradas da logo Mirames */
+    --bg: #F9EFED;        /* fundo rosado claro */
+    --ink: #4D2B13;       /* marrom do texto "Mirames" */
+    --hill-mid: #794722;  /* montanha central */
+    --hill-left: #A9775F; /* montanha da esquerda */
+    --hill-right: #DABAA3;/* montanha da direita */
+    --stone: #84695A;     /* texto secundário */
+    --rule: #E3CFBE;      /* linhas */
+    --gold: #C99B5A;      /* detalhe dourado */
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--hill-mid); outline-offset: 4px; }
+
+  .wrap {
+    width: 100%; max-width: 900px;
+    margin: 0 auto;
+    padding-left: 32px; padding-right: 32px;
+  }
+
+  main { flex: 1; padding-top: 11vh; padding-bottom: 11vh; }
+
+  /* Pirâmides da logo atrás do nome */
+  .head {
+    position: relative;
+    min-height: 240px;
+    display: flex; align-items: flex-end;
+  }
+  /* "bottom" acompanha o tamanho do nome para a base das pirâmides cair na linha de base de "Mirames" */
+  .mountains {
+    position: absolute; left: -12px; bottom: calc(clamp(3rem, 8vw, 5.2rem) * 0.15);
+    width: 480px; max-width: 100%; height: auto;
+    opacity: 0.34;
+    z-index: 0;
+  }
+
+  /* Assinatura no estilo da logo: "Mirames" forte e "GRUPO" espaçado com linha */
+  h1 { position: relative; z-index: 1; margin: 0 0 0 0; line-height: 1; }
+  .word {
+    display: block;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 5.2rem);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .tag {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    letter-spacing: 0.42em;
+    color: var(--ink);
+  }
+  .tag::after {
+    content: ""; flex: 1; height: 2px; max-width: 220px;
+    background: linear-gradient(90deg, var(--gold) 0 28px, var(--hill-mid) 28px);
+  }
+
+  /* "Grupo Mirames" funciona como link que abre a caixa de texto abaixo */
+  .name-toggle {
+    display: block; padding: 0; margin: 0;
+    background: none; border: 0;
+    font: inherit; color: inherit; text-align: left;
+    cursor: pointer;
+  }
+  .name-toggle:focus-visible { outline: 2px solid var(--hill-mid); outline-offset: 6px; border-radius: 4px; }
+  .name-toggle .word { transition: color 0.2s ease; }
+  .name-toggle:hover .word { color: var(--hill-mid); }
+  .tag .plus {
+    order: 2; flex: none;
+    font-weight: 300; font-size: 1.4em; letter-spacing: 0; line-height: 1;
+    color: var(--hill-mid);
+    transition: transform 0.35s ease;
+  }
+  .name-toggle[aria-expanded="true"] .plus { transform: rotate(45deg); }
+
+  .about { margin-top: 28px; }
+  .about-box {
+    max-width: 60ch;
+    padding: 22px 26px;
+    background: #F3E2DB;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    font-size: 1.08rem; line-height: 1.65;
+  }
+  .about-box p { margin: 0; }
+  .about-box p + p { margin-top: 10px; color: var(--stone); font-size: 0.98rem; }
+
+  /* Abertura suave: a altura cresce de 0 até o tamanho do texto */
+  .js .about {
+    display: grid; grid-template-rows: 0fr;
+    opacity: 0; margin-top: 0;
+    transition: grid-template-rows 0.45s ease, opacity 0.4s ease, margin-top 0.45s ease;
+  }
+  .js .about > div { overflow: hidden; min-height: 0; }
+  .js .about.is-open { grid-template-rows: 1fr; opacity: 1; margin-top: 28px; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .about, .tag .plus, .name-toggle .word { transition: none; }
+  }
+
+  .segments {
+    list-style: none; margin: 64px 0 0; padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .segments li {
+    display: flex; align-items: center; gap: 22px;
+    padding: 18px 0 16px;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 300;
+    font-size: clamp(1.35rem, 3vw, 1.95rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .segments svg {
+    flex: none; width: 32px; height: 32px;
+    fill: none; stroke: var(--hill-mid); stroke-width: 1.5;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .contact {
+    margin-top: 64px;
+    display: flex; flex-wrap: wrap; gap: 12px 48px;
+    font-size: 1.1rem; font-weight: 500;
+  }
+  .contact a { border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
+  .contact a:hover { border-bottom-color: var(--hill-mid); color: var(--hill-mid); }
+
+  footer {
+    padding-top: 28px; padding-bottom: 36px;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem; color: var(--stone);
+  }
+  footer p { margin: 0 0 2px; }
+
+  @media (max-width: 760px) {
+    .head { min-height: 190px; }
+    .mountains { width: 360px; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding-left: 20px; padding-right: 20px; }
+    main { padding-top: 52px; padding-bottom: 60px; }
+    .segments { margin-top: 44px; }
+    .segments li { gap: 16px; }
+    .segments svg { width: 26px; height: 26px; }
+    .contact { margin-top: 48px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <div class="head">
+    <!-- Três pirâmides da logo Mirames -->
+    <svg class="mountains" viewBox="0 0 360 170" aria-hidden="true">
+      <path d="M10 170 L104 14 L198 170 Z" fill="var(--hill-left)"/>
+      <path d="M188 170 L262 58 L350 170 Z" fill="var(--hill-right)"/>
+      <path d="M96 170 L190 18 L284 170 Z" fill="var(--hill-mid)"/>
+    </svg>
+    <h1>
+      <button class="name-toggle" type="button" aria-expanded="false" aria-controls="sobre">
+        <span class="tag">GRUPO<span class="plus" aria-hidden="true">+</span></span>
+        <span class="word">Mirames</span>
+      </button>
+    </h1>
+  </div>
+
+  <div class="about" id="sobre" role="region" aria-label="Sobre o Grupo Mirames">
+    <div>
+      <div class="about-box">
+        <p>O Grupo Mirames é um grupo de investidores que atua em diversos segmentos.</p>
+        <p>Estamos abertos a ideias, propostas de novos negócios e parcerias.</p>
+      </div>
+    </div>
+  </div>
+
+  <ul class="segments" aria-label="Áreas de atuação">
+    <li>
+      <svg viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M3 9h17v14H3z"/><path d="M20 14h6l5 5v4H20z"/>
+        <circle cx="9" cy="25.5" r="2.5"/><circle cx="25" cy="25.5" r="2.5"/>
+      </svg>
+      Transportes
+    </li>
+    <li>
+      <svg viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="10" y="3" width="14" height="28" rx="3"/><path d="M15 27h4"/>
+      </svg>
+      Aplicativos móveis
+    </li>
+    <li>
+      <svg viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M8 3h13l6 6v22H8z"/><path d="M21 3v6h6"/>
+        <path d="M12 15h11M12 19h11"/><path d="M13 25l2.5 2.5L21 22"/>
+      </svg>
+      Licitações
+    </li>
+    <li>
+      <svg viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M6 11h22l-2 20H8z"/><path d="M12 14V9a5 5 0 0 1 10 0v5"/>
+      </svg>
+      E-commerce
+    </li>
+    <li>
+      <svg viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M7 27C7 14 15 6 28 5c0 13-7 22-20 22z"/><path d="M7 27L19 15"/>
+      </svg>
+      Saúde e bem-estar
+    </li>
+  </ul>
+
+  <div class="contact">
+    <a href="tel:+5541996005095">(41) 99600-5095</a>
+    <a href="mailto:mirames@mirames.com.br">mirames@mirames.com.br</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>MIRAMES TRANSPORTES LTDA</p>
+    <p>CNPJ 66.250.837/0001-05</p>
+    <p>Rua Guarulhos, 157, Primavera, Rosana/SP, CEP 19272-260</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.querySelector('.name-toggle');
+    var panel = document.getElementById('sobre');
+    if (!toggle || !panel) return;
+    panel.setAttribute('aria-hidden', 'true');
+    toggle.addEventListener('click', function () {
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      panel.classList.toggle('is-open', !open);
+      panel.setAttribute('aria-hidden', String(open));
+    });
+  })();
+</script>
+
+</body>
+</html>
